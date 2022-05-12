@@ -20,7 +20,6 @@ public class PlayerMove : MonoBehaviour
         startGravity = Physics.gravity;
 
     }
-
     public void OnMovePlayer(InputAction.CallbackContext obj)
     {
         stickDirection = obj.ReadValue<Vector2>();
@@ -51,6 +50,7 @@ public class PlayerMove : MonoBehaviour
     {
         if(!controller.isGrounded)
         {
+            //Calcul de la gravité si le player est dans les airs
             var gravVectorAir = lastVelocity +startGravity * Time.deltaTime*2;
             gravVectorAir.x = 0;
             gravVectorAir.z = 0;
@@ -58,6 +58,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
+            //Calcul de la gravité si le player est sur le sol
             var gravVector = lastVelocity + startGravity * Time.deltaTime * 0.2f;
             gravVector.x = 0;
             gravVector.z = 0;
